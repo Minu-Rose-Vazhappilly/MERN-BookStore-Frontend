@@ -2,7 +2,7 @@ import React from 'react'
 
 function Preloader() {
   return (
-    <div className='d-flex justify-content-center align-items-center w-100' style={{height:"100vh"}}>
+    <div className='flex justify-center items-center' style={{height:"100vh"}}>
       
       
         
