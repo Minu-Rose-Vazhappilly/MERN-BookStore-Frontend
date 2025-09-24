@@ -41,8 +41,8 @@ function Contact() {
 
         </div>
         <div className='md:mx-25'>
-          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-10   ">
-            <div className="bg-gray-300 rounded-lg flex flex-col justify-center items-center  w-full max-w-[350px] aspect-[5/4] mx-auto" >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10  flex items-center ">
+            <div className="bg-gray-300 rounded-lg flex flex-col justify-center items-center py-5  w-full max-w-[350px] aspect-[5/4] mx-auto " >
               <h1 className='text-center mb-8 mt-3'>Send me message</h1>
               <form action="" className="w-full px-5  ">
                 <input
@@ -64,7 +64,7 @@ function Contact() {
               </form>
               <Link className="bg-black text-white md:w-80 w-64 text-center mb-3 p-1 mt-3 rounded-lg">Send</Link>
             </div>
-            <div className='w-full max-w-[350px] aspect-[5/4] md:mx-auto mt-5'><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62865.54195915393!2d76.30948081921879!3d10.008897991762499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080c8e94a07a07%3A0x49921cdfae82660!2sKakkanad%2C%20Kerala!5e0!3m2!1sen!2sin!4v1758719082801!5m2!1sen!2sin" className='w-full h-full rounded-lg' style={{ border: "0" }} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+            <div className='w-full max-w-[350px] aspect-[5/4] md:mx-auto '><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62865.54195915393!2d76.30948081921879!3d10.008897991762499!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080c8e94a07a07%3A0x49921cdfae82660!2sKakkanad%2C%20Kerala!5e0!3m2!1sen!2sin!4v1758719082801!5m2!1sen!2sin" className='w-full h-full rounded-lg' style={{ border: "0" }} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
           </div>
         </div>
       </div>
