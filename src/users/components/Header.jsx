@@ -25,17 +25,18 @@ function Header() {
           <FontAwesomeIcon  icon={faInstagram} />
         <FontAwesomeIcon className='ms-3' icon={faTwitter} />
         <FontAwesomeIcon className='ms-3' icon={faFacebook} />
-        <FontAwesomeIcon className='ms-3' icon={faCircleUser} style={{height:"25px",width:"25px"}} />
+        {/* login */}
+        <Link to='/login'><FontAwesomeIcon className='ms-3' icon={faCircleUser} style={{height:"25px",width:"25px"}} /></Link>
         
         </div>
       </nav>
-      <nav className='bg-cyan-900'>
+      <nav className='bg-gray-800'>
         <div className='md:hidden flex items-center justify-between p-3 text-white'>
           <FontAwesomeIcon icon={faBars} onClick={() => setIsOpen(!isOpen)} />
-          <FontAwesomeIcon className='ms-3' icon={faCircleUser} style={{height:"25px",width:"25px"}} />
+          <Link to='/login'><FontAwesomeIcon className='ms-3' icon={faCircleUser} style={{height:"25px",width:"25px"}} /></Link>
         </div>
         {isOpen && (
-          <div className='flex flex-col  justify-center bg-cyan-900 text-white md:hidden p-3'>
+          <div className='flex flex-col  justify-center bg-gray-800 text-white md:hidden p-3'>
             <Link className='mb-2' to={'/'}>Home</Link>
             <Link className='mb-2' to={'/allbooks'}>Books</Link>
             <Link className='mb-2' to={'/careers'}>Careers</Link>
