@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../components/Header'
 import Footer from '../../components/Footer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowUpRightFromSquare, faLocationDot } from '@fortawesome/free-solid-svg-icons'
+import { faArrowUpRightFromSquare, faLocationDot, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 
 
 function Careers() {
+  const [modalStatus, setModalStatus] = useState(false)
   return (
     <>
       <Header />
@@ -17,31 +18,73 @@ function Careers() {
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto odio nesciunt commodi soluta ipsum, asperiores doloremque excepturi quasi delectus! Harum repudiandae assumenda provident, placeat unde nemo ad rerum quidem dolor.
           </p>
           <p className='md:mx-25 mt-5'>Current Opennings</p>
-  
+
         </div>
-        
-         <div className='flex justify-center md:items-center flex-col '>
-           <div className='flex '>
+
+        <div className='flex justify-center md:items-center flex-col '>
+          <div className='flex '>
             <input type="text" className='round-l border border-gray-300 p-2 focus-outline:none' placeholder='Job title' />
             <button className='bg-green-500 p-2 round-r'>Search</button>
-           </div>
-           <div className="w-full md:max-w-[800px] md:mx-40 shadow p-4 mt-4"> 
+          </div>
+          <div className="w-full md:max-w-[800px] md:mx-40 shadow p-4 mt-4">
             <div className='flex justify-between'><h1>  Job Title</h1>
-            <button className='bg-blue-500 rounded px-3 py-2 text-white'>APPLY <FontAwesomeIcon icon={faArrowUpRightFromSquare} /></button>
+              <button onClick={() => setModalStatus(true)} className='bg-blue-500 rounded px-3 py-2 text-white'>APPLY <FontAwesomeIcon icon={faArrowUpRightFromSquare} /></button>
             </div>
-            <div><hr className='border border-gray-300'/></div>  
-            <h1><FontAwesomeIcon icon={faLocationDot} style={{color: "#74C0FC",}} /> Location</h1>
+            <div><hr className='border border-gray-300' /></div>
+            <h1><FontAwesomeIcon icon={faLocationDot} style={{ color: "#74C0FC", }} /> Location</h1>
             <h1>Job Type:Senior Level</h1>
             <h1>Qualification:Mtech/Btech/BCA/MCA</h1>
             <h1>Experience:5-7</h1>
             <h1>Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam temporibus reprehenderit ipsam corrupti iure, fugiat molestias doloremque magnam architecto placeat atque vero asperiores sapiente perspiciatis incidunt, nemo pariatur nam fugit?</h1>
-          </div> 
+          </div>
         </div>
-        
-        
-         </div>
-        
-      
+
+
+      </div>
+      {
+        modalStatus &&
+        <div className='relative z-10 ' >
+          <div className='bg-gray-500/75 fixed inset-0 transition-opacity'>
+            <div className="flex justify-center items-center min-h-screen">
+              <div className='bg-white rounded md:w-150 w-100'>
+                <div className='bg-black text-white flex justify-between items-center rounded'>
+                  <h3>Application form</h3>
+                  <FontAwesomeIcon onClick={() => setModalStatus(false)} icon={faXmark} />
+                </div>
+                <div className="relative p-3">
+                  <div className="md:grid grid-cols-2 gap-3 ">
+                    <input
+                      type="text"
+                      placeholder="Full Name"
+                      className="w-full p-2 border rounded placeholder-gray-600 text-black"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Qualification"
+                      className="w-full p-2 border rounded placeholder-gray-600 text-black"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Email Id"
+                      className="w-full p-2 border rounded placeholder-gray-600 text-black"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Phone"
+                      className="w-full p-2 border rounded placeholder-gray-600 text-black"
+                    />
+                    <textarea name="" className=' col-span-2 w-full p-2 border rounded placeholder-gray-600 text-black' id=""></textarea>
+                  </div>
+                  
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      }
+
 
       <Footer />
     </>

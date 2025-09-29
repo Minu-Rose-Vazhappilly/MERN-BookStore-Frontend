@@ -51,7 +51,7 @@ function ViewBook() {
         <div className='relative z-10' onClick={()=>setModalStatus(false)}>
           <div className='bg-gray-500/75 fixed inset-0 transition-opacity'>
             <div className="flex justify-center items-center min-h-screen">
-                <div className='bg-white rounded' style={{width:"800px"}}>
+                <div className='bg-white rounded md:w-250 w-100'>
                   <div className='bg-black text-white flex justify-between items-center rounded'>
                     <h3>Books Images</h3>
                     <FontAwesomeIcon onClick={()=>setModalStatus(false)} icon={faXmark}/>
