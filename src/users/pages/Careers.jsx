@@ -47,37 +47,60 @@ function Careers() {
           <div className='bg-gray-500/75 fixed inset-0 transition-opacity'>
             <div className="flex justify-center items-center min-h-screen">
               <div className='bg-white rounded md:w-150 w-100'>
+                {/* modal header */}
                 <div className='bg-black text-white flex justify-between items-center rounded'>
                   <h3>Application form</h3>
                   <FontAwesomeIcon onClick={() => setModalStatus(false)} icon={faXmark} />
                 </div>
-                <div className="relative p-3">
+                {/* modal body */}
+                <div className="relative p-5">
                   <div className="md:grid grid-cols-2 gap-3 ">
-                    <input
-                      type="text"
-                      placeholder="Full Name"
-                      className="w-full p-2 border rounded placeholder-gray-600 text-black"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Qualification"
-                      className="w-full p-2 border rounded placeholder-gray-600 text-black"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Email Id"
-                      className="w-full p-2 border rounded placeholder-gray-600 text-black"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Phone"
-                      className="w-full p-2 border rounded placeholder-gray-600 text-black"
-                    />
-                    <textarea name="" className=' col-span-2 w-full p-2 border rounded placeholder-gray-600 text-black' id=""></textarea>
+                    <div className='mb-3'>
+                      <input
+                        type="text"
+                        placeholder="Full Name"
+                        className="w-full p-2 border rounded placeholder-gray-600 text-black"
+                      />
+                    </div>
+                    <div className='mb-3'>
+                      <input
+                        type="text"
+                        placeholder="Qualification"
+                        className="w-full p-2 border rounded placeholder-gray-600 text-black"
+                      />
+                    </div>
+                    <div className='mb-3'>
+                      <input
+                        type="text"
+                        placeholder="Email Id"
+                        className="w-full p-2 border rounded placeholder-gray-600 text-black"
+                      />
+                    </div>
+                    <div className='mb-3'>
+                      <input
+                        type="text"
+                        placeholder="Phone"
+                        className="w-full p-2 border rounded placeholder-gray-600 text-black"
+                      />
+                    </div>
+                    <div className='mb-3 col-span-2 '><textarea placeholder='coverLetter' name="" className=' w-full p-2 border rounded placeholder-gray-600 text-black' id=""></textarea>
+                    </div>
+                    <div className='mb-3 col-span-2 flex flex-col text-gray-600'>
+                      <label htmlFor="">Resume</label>
+                      <input
+                        type="file"
+                        
+                        className="w-full  border rounded file:bg-gray-400 file:p-2 file:text-white "
+                      />
+                    </div>
                   </div>
                   
                 </div>
-
+                {/* modal footer */}
+                <div className='bg-gray-250 p-2 w-full flex justify-end'>
+                      <button className='py-2 px-3 rounded bg-black text-white'>Reset</button>
+                      <button className='py-2 px-3 rounded bg-blue-600 text-white ms-3'>Submit</button>
+                </div>
               </div>
             </div>
           </div>

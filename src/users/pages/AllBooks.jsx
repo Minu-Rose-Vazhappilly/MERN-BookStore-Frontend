@@ -3,6 +3,7 @@ import Header from '../components/Header'
 import Footer from '../../components/Footer'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Link } from 'react-router-dom'
 
 function AllBooks() {
   const [listStatus,setListstatus] = useState(false)
@@ -67,7 +68,7 @@ function AllBooks() {
             <div className='flex flex-col justify-center items-center'>
             <h1 className='text-center '>Author</h1>
             <h1 className='text-2xl'>Title</h1>
-            <button className='bg-blue-500 rounded px-4 py-1'>Buy</button>
+            <Link to={'/books/:id/view'} className='bg-blue-500 rounded px-4 py-1'>View Book</Link>
             </div>
           </div>
           <div className="shadow rounded p-3 mx-4">
@@ -75,7 +76,7 @@ function AllBooks() {
             <div className='flex flex-col justify-center items-center'>
             <h1 className='text-center '>Author</h1>
             <h1 className='text-2xl'>Title</h1>
-            <button className='bg-blue-500 rounded px-4 py-1'>Buy</button>
+            <Link to={'/books/:id/view'} className='bg-blue-500 rounded px-4 py-1'>View Book</Link>
             </div>
           </div>
           <div className="shadow rounded p-3 mx-4">
@@ -83,7 +84,7 @@ function AllBooks() {
             <div className='flex flex-col justify-center items-center'>
             <h1 className='text-center '>Author</h1>
             <h1 className='text-2xl'>Title</h1>
-            <button className='bg-blue-500 rounded px-4 py-1'>Buy</button>
+            <Link to={'/books/:id/view'} className='bg-blue-500 rounded px-4 py-1'>View Book</Link>
             </div>
           </div>
           <div className="shadow rounded p-3 mx-4">
@@ -91,7 +92,7 @@ function AllBooks() {
             <div className='flex flex-col justify-center items-center'>
             <h1 className='text-center '>Author</h1>
             <h1 className='text-2xl'>Title</h1>
-            <button className='bg-blue-500 rounded px-4 py-1'>Buy</button>
+            <Link to={'/books/:id/view'} className='bg-blue-500 rounded px-4 py-1'>View Book</Link>
             </div>
           </div>
         </div>
