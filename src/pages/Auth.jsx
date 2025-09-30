@@ -1,9 +1,11 @@
-import { faUser } from '@fortawesome/free-regular-svg-icons'
+import { faEye, faEyeSlash, faUser } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function Auth({register}) {
+  const [viewPasswordStatus,setViewPasswordStatus] = useState(false)
+  const [userDetails,setUserDetails] = useState({username:"",email:"",password:""})
   return (
     <div className='w-full min-h-screen flex justify-center items-center flex-col bg-[url("https://wallpapers.com/images/hd/flower-design-background-tvmxzdq2133d4on2.jpg")] bg-cover bg-center '>
           <div className='p-10'>
@@ -17,14 +19,20 @@ function Auth({register}) {
             {
               register && 
                <form className='my-3 w-full'>
-                <input type="text" placeholder='User Name' className='w-full bg-white p-2 placeholder-gray-500 rounded text-black' />
+                <input type="text" value={userDetails.username} onChange={e=>setUserDetails({...userDetails,username:e.target.value})} placeholder='User Name' className='w-full bg-white p-2 placeholder-gray-500 rounded text-black' />
              </form>
             }
             <form className='my-3 w-full'>
-                <input type="text" placeholder='Email ID' className='w-full bg-white p-2 placeholder-gray-500 rounded text-black' />
+                <input type="text" placeholder='Email ID' value={userDetails.email} onChange={e=>setUserDetails({...userDetails,email:e.target.value})} className='w-full bg-white p-2 placeholder-gray-500 rounded text-black' />
             </form>
-            <form className='my-3 w-full'>
-                <input type="text" placeholder='Password' className=' w-full bg-white p-2 placeholder-gray-500 rounded text-black' />
+            <form className='my-3 w-full flex items-center'>
+                <input type={viewPasswordStatus?"text":"password"} placeholder='Password' value={userDetails.password} onChange={e=>setUserDetails({...userDetails,password:e.target.value})}  className=' w-full bg-white p-2 placeholder-gray-500 rounded text-black' />
+                { !viewPasswordStatus ?
+                    <FontAwesomeIcon style={{marginLeft:"-30px"}} icon={faEye} onClick={()=>setViewPasswordStatus(!viewPasswordStatus)} className='text-gray-500 cursor-pointer'/>
+                    :
+                <FontAwesomeIcon style={{marginLeft:"-30px"}} icon={faEyeSlash} onClick={()=>setViewPasswordStatus(!viewPasswordStatus)} className='text-gray-500 cursor-pointer'/>
+                }
+                
             </form>
             <div className='flex justify-between p-4 w-full'>
                   <p className='text-sm text-orange-300'>Never</p>
