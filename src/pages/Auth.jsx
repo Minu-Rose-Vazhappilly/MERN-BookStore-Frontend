@@ -2,10 +2,25 @@ import { faEye, faEyeSlash, faUser } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { ToastContainer,toast } from 'react-toastify'
+
 
 function Auth({register}) {
   const [viewPasswordStatus,setViewPasswordStatus] = useState(false)
   const [userDetails,setUserDetails] = useState({username:"",email:"",password:""})
+  // console.log(userDetails);
+
+  const handleRegister = ()=>{
+    console.log("Inside handleRegister");
+    const {username,email,password} = userDetails
+    if(!username || !email || !password){
+        toast.info("Please fill the form completely")
+    }else{
+      toast.success("Proceed to API CALL")
+    } 
+    
+  }
+  
   return (
     <div className='w-full min-h-screen flex justify-center items-center flex-col bg-[url("https://wallpapers.com/images/hd/flower-design-background-tvmxzdq2133d4on2.jpg")] bg-cover bg-center '>
           <div className='p-10'>
@@ -35,15 +50,15 @@ function Auth({register}) {
                 
             </form>
             <div className='flex justify-between p-4 w-full'>
-                  <p className='text-sm text-orange-300'>Never</p>
+                  <p className='text-sm text-orange-300'>Never share your password with others</p>
                   <button className='text-sm underline'> Forget Password</button>
             </div>
             <div className='text-center w-full'>
               {
                 register ?
-                  <button className='bg-green-700 p-2 w-full rounded'>Register</button>
+                  <button type='button' className='bg-green-700 p-2 w-full rounded' onClick={handleRegister}>Register</button>
                   :
-                  <button className='bg-green-700 p-2 w-full rounded'>Login</button>
+                  <button type='button' className='bg-green-700 p-2 w-full rounded'>Login</button>
               }
             </div>
             <div>
@@ -55,6 +70,19 @@ function Auth({register}) {
             }
             </div>
           </div>
+          <ToastContainer
+position="top-right"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick={false}
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="colored"
+
+/>
     </div>
   )
 }

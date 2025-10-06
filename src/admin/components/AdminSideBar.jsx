@@ -17,21 +17,21 @@ function AdminSideBar() {
      <button onClick={()=>setListstatus(!listStatus)} className='text-2xl md:hidden '><FontAwesomeIcon icon={faBars} style={{color:"blue"}}/></button>
      <div className={listStatus ? 'block mt-2' : 'md:block hidden mt-2'}>
         <div className="mt-3 flex items-center gap-x-2">
-          <Link to={'/'}>
+          <Link to={'/admin-dashboard'}>
               <FontAwesomeIcon icon={faBook} />
               Home
             </Link>
         </div>
 
         <div className="mt-3 flex items-center gap-x-2">
-          <Link to={'/allbooks'}>
+          <Link to={'/admin-resources'}>
               <FontAwesomeIcon icon={faBook} />
               AllBooks
             </Link>
         </div>
 
         <div className="mt-3 flex items-center gap-x-2">
-          <Link to={'/careers'}>
+          <Link to={'/admin-careers'}>
               <FontAwesomeIcon icon={faBagShopping} />
               Careers
             </Link>
