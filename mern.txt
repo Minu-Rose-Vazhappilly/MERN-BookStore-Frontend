@@ -294,60 +294,97 @@ Diffing = spotting the differences.
 
 Reconciliation = fixing the real DOM based on differences.
 
-
+BACKEND TECHNOLOGIES
+-----------------------------------
 
 MONGODB -DATABASE
 ---------------------
-1.Database : database is a oraganised collection of data to be stored permanently.
-2.MONGODB is document databse.
-3.it stores data in a type of JSON format called BSON 
-4.Values may include numbers,strings,booleans,arrays or even nested documents.
-5.MongoDB can be installed in locally or hosted in cloud
-6.Sql Versus NoSql databases 
-        SQL                              NoSql
- ------------------------------------------------------
- - Relational databases                       -Document Database - not like table,like BSON,One document One data
- data stored in table.
-Collection of rows and colums are table       -Collection of document is 'collection'
+    1.Database : database is a oraganised collection of data to be stored permanently.
+    2.MONGODB is document databse.
+    3.it stores data in a type of JSON format called BSON 
+    4.Values may include numbers,strings,booleans,arrays or even nested documents.
+    5.MongoDB can be installed in locally or hosted in cloud
+    6.Sql Versus NoSql databases 
+            SQL                              NoSql
+    ------------------------------------------------------
+    - Relational databases                       -Document Database - not like table,like BSON,One document One data
+    data stored in table.
+    Collection of rows and colums are table       -Collection of document is 'collection'
 
-Uses a fixed schema                           -Uses dynamic schema
+    Uses a fixed schema                           -Uses dynamic schema
 
-Uses in traditional business applicatio       -Used in Bigdata and real time app.
-CRUD OPERATIONS IN MONGODB
-find({},projections) : projections are optional. to get all documents from a collection.
-findOne() : to get a single document from a single document,argument should be json.
-insertOne({}): to insert one document in a collection.
-insertMany([{}]) :to insert many document in a collection.
-updateOne({key:value}):to update one
-used together with updateOne upsert:true argumet show create one and upadte
-deleteOne:used to delete one 
+    Uses in traditional business applicatio       -Used in Bigdata and real time app.
+    CRUD OPERATIONS IN MONGODB
+    find({},projections) : projections are optional. to get all documents from a collection.
+    findOne() : to get a single document from a single document,argument should be json.
+    insertOne({}): to insert one document in a collection.
+    insertMany([{}]) :to insert many document in a collection.
+    updateOne({key:value}):to update one
+    used together with updateOne upsert:true argumet show create one and upadte
+    deleteOne:used to delete one 
 
--Querying Operators : used to compare and reference documents.
-$eq: value are equal
-$ne: value not equal,example:db.users.find({email:{$ne:"admin@gmail.com"}})
-$gt:
-$gte:
-$lt
-$lte
-$in
--logical
-    -$and
-    -$or
-    -$nor
-    -$not
--Evaluation
-    $regex : allow use of regular expression when evaluating field value
-    $text:perform text search
-    $where : uses to match js expression in documnet.
--Updation 
-    - fields
-        -$inc : used to increment
-        $set :set values of a field
-        $rename:rename a field
-        $unset: removes filed from a document.
-    - array
-        -$pop : remove first/last value from a array.
-        $pull: remove all elements where match the query.
-        $push : to add element to an array
+    -Querying Operators : used to compare and reference documents.
+    $eq: value are equal
+    $ne: value not equal,example:db.users.find({email:{$ne:"admin@gmail.com"}})
+    $gt:
+    $gte:
+    $lt
+    $lte
+    $in
+    -logical
+        -$and
+        -$or
+        -$nor
+        -$not
+    -Evaluation
+        $regex : allow use of regular expression when evaluating field value
+        $text:perform text search
+        $where : uses to match js expression in documnet.
+    -Updation 
+        - fields
+            -$inc : used to increment
+            $set :set values of a field
+            $rename:rename a field
+            $unset: removes filed from a document.
+        - array
+            -$pop : remove first/last value from a array.
+            $pull: remove all elements where match the query.
+            $push : to add element to an array
+
+    -Aggregation - operations allow you to group ,sort ,perform calculatios,analyze data,and much more.
+            -$lookup - Performs a left outer join to a collection.
+                    syntax: 
+                    {
+                    $lookup:
+                        {
+                        from: <collection to join>,
+                        localField: <field from the input documents>,
+                        foreignField: <field from the documents of the "from" collection>,
+                        let: { <var_1>: <expression>, …, <var_n>: <expression> },
+                        pipeline: [ <pipeline to run> ],
+                        as: <output array field>
+                        }
+                    }
+            $group
+            $sort
+            $limit
+            $match
+    MongoDB Indexing: Used to improve efficiency and speed of data retrival.Index is a data structure.db.collection.createIndex() .Faster Searching Sorting.Used when handling Bigdata.
+
+NODE JS : RUNTIME ENVIRONMENT FOR JS
+ ----------
+It has capability to build server application.
+It handles request non Blocking : solves request whenever requested
+ Lot of Framework:
+                Currently we are studying client-server framwork
+
+1.Isa free,open source tool that lets you run javascript outside the web server.
+2.Build fast and scalable applucations like web srevers,APIs ,tools and more.
+3.uses event driven and non blocking model.
+ 
+
+ 
+
+
 
 
