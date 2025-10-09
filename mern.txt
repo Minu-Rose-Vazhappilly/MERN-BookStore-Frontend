@@ -373,15 +373,113 @@ MONGODB -DATABASE
 
 NODE JS : RUNTIME ENVIRONMENT FOR JS
  ----------
-It has capability to build server application.
-It handles request non Blocking : solves request whenever requested
- Lot of Framework:
-                Currently we are studying client-server framwork
+        It has capability to build server application.
+        It handles request non Blocking : solves request whenever requested
+        Lot of Framework:
+                        Currently we are studying client-server framwork
 
-1.Isa free,open source tool that lets you run javascript outside the web server.
-2.Build fast and scalable applucations like web srevers,APIs ,tools and more.
-3.uses event driven and non blocking model.
- 
+        1.Isa free,open source tool that lets you run javascript outside the web server.
+        2.Build fast and scalable applucations like web srevers,APIs ,tools and more.
+        3.uses event driven and non blocking model.
+        
+        Node.js                                      Browser
+        ----------------------------------------------------------------------------------
+        designed for server-side                    client side applicatiopm
+        -provides API'S FOR FILE SYSTEMS            provides DOM,fetch and UI API's
+        networking and os
+        Node.js uses global                          browsers uses window or self
+        node.js uses CommonJs('require' for           browsers use window or self
+        importing 'module.exports' for exporting)       ES modules(Export & import)
+        API'S for timers,process along with event loop   only event loop
+        access environment variables                        browsers cannot have access
+        Package managemet :uses npm/yarn                    CDNs or bundlers
+
+        The Node.js REPL (Read-Eval-Print Loop) is an interactive shell for executing JavaScript code.
+        Environment variables are used to store secret informations
+        Uses Uses Just in time Compilation.They will directly convert it into machine code without interpretation.
+
+        Node.js Architecture
+        Uses Single threaded Event driven architecture that is designed to handle many connections at once,efficiently and without blocking the main thread.
+
+            Phases.
+            1. Client Request Phase
+
+            Clients send requests to the Node.js server
+            Each request is added to the Event Queue
+            2. Event Loop Phase
+
+            The Event Loop continuously checks the Event Queue
+            Picks up requests one by one in a loop
+            3. Request Processing
+
+            Simple (non-blocking) tasks are handled immediately by the main thread
+            Complex/blocking tasks are offloaded to the Thread Pool
+            4. Response Phase
+
+        When blocking tasks complete, their callbacks are placed in the Callback Queue
+        Event Loop processes callbacks and sends responses
+        Event loop working cmplte
+        Event loop order of handling functions.
+            1.Execute the main script (synchronous code)
+            2.Process any microtasks (Promises, process.nextTick)
+            3.Execute timers (setTimeout, setInterval)
+            4.Run I/O callbacks (file system, network operations)
+            5.Process setImmediate callbacks
+            6.Handle close events (like socket.on('close'))
+        Asynchronous and Sunchronous functions.
+        Synchronous
+            Blocks execution until complete
+            Simple to understand
+            Can cause delays
+            Uses functions like readFileSync
+        Asynchronous
+            Non-blocking execution
+            Better performance
+            More complex to handle
+            Uses callbacks, promises, or async/await
+
+        -promises
+        -Async await.
+
+
+        Error Handling in Node.js - Important
+            Error-First Callbacks : callbacks first argument is error that can handle error during the process 
+            -Using try... catch with Async Await.
+            -Using uncaghtExceptions - uses Global Error handling for uncaught exceptions.
+
+            Example file system error in w3 schools.
+
+            Node.js modules
+            ---------------
+            Organize code in logical,reusuable components.
+                    -Core Built in modules
+                    -fs : handling file systems.
+                    -http:
+                    -path:
+                    -os:
+                    -events:
+                    -To use any built in module,use the require('Package-name/file-name') function:
+                    -to export multiple data from a file : exports object
+                    -
+
+                    NPM is a package manager for Node.js packages, or modules if you like.
+                    A package in Node.js contains all the files you need for a module.
+                    Modules are JavaScript libraries you can include in your project.
+                    package.json is a special file that describes your Node.js project.
+                    It contains information about your app, such as its name, version, dependencies, scripts, and more.
+                    -To create package.Json file:npm init -y
+                    what is script in package.json?
+                                        "scripts": {
+                    "start": "node index.js",
+                    "dev": "nodemon index.js",
+                    "test": "jest",
+                    "build": "webpack --mode production",
+                    "lint": "eslint .",
+                    "prepare": "husky install"
+                        }
+
+            
+
 
  
 
