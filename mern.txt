@@ -478,6 +478,97 @@ NODE JS : RUNTIME ENVIRONMENT FOR JS
                     "prepare": "husky install"
                         }
 
+            CORS (CROSS ORIGIN RESOURCE SHARING):Cross-Origin Resource Sharing (CORS) is a browser security mechanism that controls how a web application running on one origin (domain, protocol, or port) can request resources from a different origin.
+
+EXPRESS JS:FRAMEWORK OF NODE JS
+----------------------------------
+1.Used for web server application.
+2.Install express:npm install express.
+3.features
+    -Web applications
+    -API'S
+    -Middlewares
+    -performance
+4.Routing:(cmplete routing note:11/10/2025)
+
+            query parameters:They are specified in the path with a colon : prefix.
+
+            Example: /users/:userId/books/:bookId
+
+            In this example, userId and bookId are route parameters that can be accessed via req.params.
+
+
+
+            Routing separte file:using expres router,using router we can set up path,
+            express.Router.httpRequest(PATH,HANDLER CALLBACK)
+    Middleware : Function thata can control req - res cycle 
+        Application level middleware:is bound to entire application app.use() or app.METHOD()
+        Router level Middleware : similar to application specific middleware but bound to instance of express.Router().httpRequest(path,middleware,HANDLER)
+        Bult-in Middleware:
+            express.json(): Parse JSON request bodies
+            express.urlencoded(): Parse URL-encoded request bodies
+            express.static(): Serve static files
+            express.Router(): Create modular route handlers
+        Third Party Middleware:
+            CORS
+        -Custom Middleware: function-name(req,res,next){
+            body
+        }
+        req - req
+        res - response
+        next() - go to next middleware function or steps
+
+    
+            
+STEPS TO BUILD EXPRESS SERVER
+-----------------------------
+1.Create a folder
+2.Using 'npm init -y' command create package.json
+3.create entry point of app:index.js
+4.create .env file
+5.install packages:express,cors,dotenv,mongoose
+6.create .gitignore and files/folders
+7.steps for creating server in index.js file
+    import express,cors,dotenv
+    create servers app using express
+    use cor in express
+    use express.json() middleware in server
+    server standed in the port using listen method from express
+    resolve get request to server
+    run the index.js using nodemon index.js / node index.js
+8.create routing folder
+    create router,js file
+        import express
+        create router using express.Router
+        define path using router : router.htppRequest(path,HANDLER callbacks)
+        -export router
+9.create folder for controller (cmplte...)
+
+10.Create a folder for database : used to define db connections
+    create js file.
+        import mongoose
+        get cmplete..
+
+
+MONGODB Atlas:cloud database platform
+----------------
+
+steps to create db in MongoDB ATlas
+create a project
+create cluster
+create database inside cluster
+Update Network Access of db,
+Update db access
+get Connections = string : clusters -> connect -> drivers-> copy connection string
+
+Mongoose
+---------
+JS Object oriented (...cmplete)
+2.Install Mongoose
+3.npm i mongoose
+
+
+
             
 
 

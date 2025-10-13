@@ -8,6 +8,9 @@ export const registerAPI = async (reqBody)=>{
   return await  commonAPI("POST",`${SEVERURL}/register`,reqBody)
 }
 //login api
+export const loginAPI = async (reqBody)=>{
+  return await  commonAPI("POST",`${SEVERURL}/login`,reqBody)
+}
 //home page books api
 // all career api
 
