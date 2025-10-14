@@ -489,19 +489,18 @@ EXPRESS JS:FRAMEWORK OF NODE JS
     -API'S
     -Middlewares
     -performance
-4.Routing:(cmplete routing note:11/10/2025)
-
-            query parameters:They are specified in the path with a colon : prefix.
-
-            Example: /users/:userId/books/:bookId
-
-            In this example, userId and bookId are route parameters that can be accessed via req.params.
-
-
-
+4.Routing refers to determining how an application responds to a client request to a particular endpoint, which is a URI (or path) and a specific HTTP request method (GET, POST, and so on).
+             syntax : app.METHOD(PATH, HANDLER Callback)
+             Route Parameters : are specified in the path with a colon : prefix., in express use 'req.params'
+             Example: /users/:userId/books/:bookId , route Parameters - userId, bookId
+             - Query Parameters :  are key-value pairs that appear after the ? in a URL., req.query.key
+            Example URL: http://example.com/search?q=express&page=2
+            an: q=express, page=2
+             Routing in Separate Files : using Express Router, using router we can set up path, 
+             syntax : express.Router().httpRequest(PATH,HANDLER Callback)
             Routing separte file:using expres router,using router we can set up path,
             express.Router.httpRequest(PATH,HANDLER CALLBACK)
-    Middleware : Function thata can control req - res cycle 
+    5.Middleware : Function thata can control req - res cycle 
         Application level middleware:is bound to entire application app.use() or app.METHOD()
         Router level Middleware : similar to application specific middleware but bound to instance of express.Router().httpRequest(path,middleware,HANDLER)
         Bult-in Middleware:
@@ -530,9 +529,13 @@ STEPS TO BUILD EXPRESS SERVER
 6.create .gitignore and files/folders
 7.steps for creating server in index.js file
     import express,cors,dotenv
+    import router file
+    import db file
     create servers app using express
     use cor in express
     use express.json() middleware in server
+    use router in server
+    create port
     server standed in the port using listen method from express
     resolve get request to server
     run the index.js using nodemon index.js / node index.js
@@ -542,30 +545,51 @@ STEPS TO BUILD EXPRESS SERVER
         create router using express.Router
         define path using router : router.htppRequest(path,HANDLER callbacks)
         -export router
-9.create folder for controller (cmplte...)
+9.Create folder for controller : used to define logic for resolving client request
+         - create controller file
+            - import model
+            - create request handler functions
+            - export function
+
 
 10.Create a folder for database : used to define db connections
     create js file.
         import mongoose
-        get cmplete..
+        get db connection string from process.env
+        import db file into index.js
+11. Create a folder for model : used to communicated between controller and database.
+    - create js file
+        - import mongoose
+        - create object for mongoose Schema class, passing arument as document structure
+        - create model using schema
+        - export model
+
 
 
 MONGODB Atlas:cloud database platform
 ----------------
-
-steps to create db in MongoDB ATlas
-create a project
-create cluster
-create database inside cluster
-Update Network Access of db,
-Update db access
-get Connections = string : clusters -> connect -> drivers-> copy connection string
+1. Is a service that allows you to set up, deploy, and scale a database without worrying about on-premise physical hardware, software updates, and the details of configuring for performance.
+2.steps to create db in MongoDB ATlas
+    create a project
+    create cluster
+    create database inside cluster
+    Update Network Access of db,
+    Update db access
+    get Connections = string : clusters -> connect -> drivers-> copy connection string
 
 Mongoose
 ---------
-JS Object oriented (...cmplete)
-2.Install Mongoose
-3.npm i mongoose
+1. Mongoose is a JavaScript object-oriented programming library that creates a connection between MongoDB and the Node.js JavaScript runtime environment.
+2. Install Mongoose : npm i mongoose
+3. connect() method is used to connect mongodb with node
+4. Schema : used define structure of a documents within a collection
+5. model : similar to collection in mongodb
+6. CRUD Operators
+    - read / get : find(),findOne(),findById()
+    - create : create object for model, the save the object using save() method mongoose
+    - update : updateOne(), updateMany(), findByIdAndUpdate()
+    - delete : deleteOne(), deleteMany(), findByIdAndDelete()
+
 
 
 
