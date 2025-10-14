@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer,toast } from 'react-toastify'
 import {loginAPI, registerAPI} from '../services/allAPI'
+import { GoogleOAuthProvider,GoogleLogin } from '@react-oauth/google';
 
 
 function Auth({register}) {
@@ -53,11 +54,30 @@ function Auth({register}) {
         const result = await loginAPI(userDetails)
         console.log(result);
         if(result.status == 200){
+          toast.success("Login successful")
+          sessionStorage.setItem("user",JSON.stringify(result.data.user))
+          sessionStorage.setItem("token",result.data.token)
+          setTimeout(()=>{
+              if(result.data.user.role == "admin"){
+                navigate('/admin-dashboard')
+              }else{
+                navigate('/')
+              }
+          },2500)
+          
+        }else if(result.status == 401){
+          toast.warning(result.response.data)
+          setUserDetails({username:"",email:"",password:""})
           
         }else if(result.status == 404){
+          toast.warning(result.response.data)
+          setUserDetails({username:"",email:"",password:""})
           
-        }else{
-          console.log(result);
+        }
+        else{
+          // console.log(result);
+          toast.error("Something went wrong")
+          setUserDetails({username:"",email:"",password:""})
           
         }
         
@@ -106,6 +126,26 @@ function Auth({register}) {
                   <button type='button' className='bg-green-700 p-2 w-full rounded' onClick={handleRegister}>Register</button>
                   :
                   <button type='button' className='bg-green-700 p-2 w-full rounded' onClick={handleLogin}>Login</button>
+              }
+            </div>
+            <div className=' my-5 text-center'>
+              { !register && <p>----------------------------------------or----------------------------------------</p>
+
+              }
+              {
+                !register && 
+                <div className='my-5 text-center'>
+                  <GoogleOAuthProvider>
+                    <GoogleLogin
+    onSuccess={credentialResponse => {
+      console.log(credentialResponse);
+    }}
+    onError={() => {
+      console.log('Login Failed');
+    }}
+  />
+                  </GoogleOAuthProvider>
+                </div>
               }
             </div>
             <div>
