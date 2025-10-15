@@ -11,6 +11,10 @@ export const registerAPI = async (reqBody)=>{
 export const loginAPI = async (reqBody)=>{
   return await  commonAPI("POST",`${SEVERURL}/login`,reqBody)
 }
+//google-login api
+export const googleloginAPI = async (reqBody)=>{
+  return await  commonAPI("POST",`${SEVERURL}/google-login`,reqBody)
+}
 //home page books api
 // all career api
 
