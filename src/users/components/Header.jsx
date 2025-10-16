@@ -24,10 +24,13 @@ function Header() {
       const user = JSON.parse(sessionStorage.getItem("user"))
       setUserDp(user.profile)
     }
-  },[])
+  },[token])
 
   const logout = ()=>{
     sessionStorage.clear()
+    setToken("")
+    setUserDp("")
+    setDropDownStatus(false)
     navigate('/')
     
   }
@@ -52,7 +55,7 @@ function Header() {
           <div className='relative inline-block text-left'>
            <div>
               <button onClick={()=>setDropDownStatus(!dropDownStatus)} className='inline-flex w-full items-center justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs hover:bg-gray-300'>
-                <img style={{borderRadius:"50%"}} className='mx-2' src={userDp==""?"https://www.pngmart.com/files/23/Profile-PNG-Photo.png":""} alt="user" width={'40px'} height={'40px'} />
+                <img style={{borderRadius:"50%"}} className='mx-2' src={userDp==""?"https://www.pngmart.com/files/23/Profile-PNG-Photo.png":userDp.startsWith("https://lh3.googleusercontent.com/")?userDp:"https://www.pngmart.com/files/23/Profile-PNG-Photo.png"} alt="user" width={'40px'} height={'40px'} />
               </button>
               {
                 dropDownStatus &&

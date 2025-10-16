@@ -563,6 +563,7 @@ STEPS TO BUILD EXPRESS SERVER
         - create object for mongoose Schema class, passing arument as document structure
         - create model using schema
         - export model
+12.create a folder for middlewaer
 
 
 
