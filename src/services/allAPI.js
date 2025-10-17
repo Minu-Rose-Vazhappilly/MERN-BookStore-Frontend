@@ -22,6 +22,9 @@ export const googleloginAPI = async (reqBody)=>{
 //view all books
 //view single book
 //upload single book
+export const addBookAPI = async (reqBody,reqHeader)=>{
+  return await  commonAPI("POST",`${SEVERURL}/add-book`,reqBody,reqHeader)
+}
 //profile update
 //view selled book
 //purchased books
