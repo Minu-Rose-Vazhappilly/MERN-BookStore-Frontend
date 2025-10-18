@@ -15,7 +15,10 @@ export const loginAPI = async (reqBody)=>{
 export const googleloginAPI = async (reqBody)=>{
   return await  commonAPI("POST",`${SEVERURL}/google-login`,reqBody)
 }
-//home page books api
+//home page books api 
+export const getHomeBooksAPI = async ()=>{
+  return await  commonAPI("GET",`${SEVERURL}/home-books`)
+}
 // all career api
 
 //authorised users api - user
