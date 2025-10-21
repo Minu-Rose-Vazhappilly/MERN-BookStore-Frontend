@@ -76,7 +76,7 @@ const getHomeBooks = async ()=>{
           
         </div>
         <div className='text-center my-5'>
-          <Link to='/all-books' className='bg-blue-600 p-3 text-white'>Explore More...</Link>
+          <Link to='/allbooks' className='bg-blue-600 p-3 text-white'>Explore More...</Link>
         </div>
       </section>
       {/* Author */}

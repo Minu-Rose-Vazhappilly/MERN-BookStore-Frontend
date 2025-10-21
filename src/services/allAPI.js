@@ -22,8 +22,15 @@ export const getHomeBooksAPI = async ()=>{
 // all career api
 
 //authorised users api - user
-//view all books
-//view single book
+//view all books - call from all books when page starts
+export const getAllBooksAPI = async (reqHeader)=>{
+  return await  commonAPI("GET",`${SEVERURL}/all-books`,{},reqHeader)
+}
+//view single book - called by view component.
+export const getSingleBookAPI = async (bookId,reqHeader)=>{
+  return await  commonAPI("GET",`${SEVERURL}/books/${bookId}/view`,{},reqHeader)
+}
+
 //upload single book
 export const addBookAPI = async (reqBody,reqHeader)=>{
   return await  commonAPI("POST",`${SEVERURL}/add-book`,reqBody,reqHeader)
