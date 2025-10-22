@@ -11,6 +11,9 @@ function AllBooks() {
   const [listStatus,setListstatus] = useState(false)
   const [token,setToken] = useState("")
   const [books,setBooks] = useState([])
+  const [tempBooks,setTempBooks] = useState([])
+  const [allCategories,setAllCategories] = useState([])
+  const [searchKey,setSearchKey] = useState("")
   console.log(books);
   
   
@@ -21,16 +24,20 @@ function AllBooks() {
      setToken(userToken)
      getAllBooks(userToken)
     }
-  },[])
+  },[searchKey])
 
   const getAllBooks = async (userToken)=>{
     const reqHeader = {
       "Authorization" : `Bearer ${userToken}`
     }
     try{
-      const result = await getAllBooksAPI(reqHeader)
+      const result = await getAllBooksAPI(searchKey,reqHeader)
       if(result.status == 200){
         setBooks(result.data)
+        setTempBooks(result.data)
+        const tempCategory = result.data.map(item=>item.category)
+        const tempArray = [...new Set(tempCategory)]
+        setAllCategories(tempArray)
       }else{
         console.log(result);
         toast.warning(result.response.data)
@@ -43,6 +50,19 @@ function AllBooks() {
       
     }
   }
+
+  const filterBooks = (category)=>{
+    if(category == "No-Filter"){
+       setBooks(tempBooks)
+
+    }else{
+      setBooks(tempBooks.filter(item=>item.category.toLowerCase() == category.toLowerCase()))
+
+    }
+  }
+
+  //filtering according to categoring
+
   return (
     <div>
       <Header/>
@@ -53,7 +73,7 @@ function AllBooks() {
        <div className="flex justify-center md:items-center flex-col my-5 p-3">
             <h1 className='text-3xl'>Collections</h1>
             <div className="flex">
-              <input type="text" className="p-2 text-black rounded border border-gray-200 w-100 placeholder-gray-600" placeholder='Search by Title' />
+              <input type="text" className="p-2 text-black rounded border border-gray-200 w-100 placeholder-gray-600" placeholder='Search by Title' onChange={e=>setSearchKey(e.target.value)} />
               <button className='bg-blue-500 w-20'>Search</button>
             </div>
        </div>
@@ -65,37 +85,19 @@ function AllBooks() {
             <button onClick={()=>setListstatus(!listStatus)} className='text-2xl md:hidden'><FontAwesomeIcon icon={faBars} /></button>
          </div>
           <div className={listStatus?'block':'md:block hidden'}>
+            {
+              allCategories?.length>0 && 
+                allCategories?.map((category,index)=>(
+                  <div key={index} className='mt-3'>
+              <input type="radio" id={category} name='filter' onClick={()=>filterBooks(category)}/>
+              <label className='ms-3' htmlFor={category}>{category}</label>
+            </div>
+                ))
+            }
+            
             <div className='mt-3'>
-              <input type="radio" id='Literature' name='filter'/>
-              <label className='ms-3' htmlFor="Literature">Literature Fiction</label>
-            </div>
-            <div>
-              <input type="radio" id='philosphy' name='filter'/>
-              <label className='ms-3' htmlFor="Literature">Philosophy</label>
-            </div>
-            <div>
-              <input type="radio" id='romanace' name='filter'/>
-              <label className='ms-3' htmlFor="Literature">Romance</label>
-            </div>
-            <div>
-              <input type="radio" id='mystery' name='filter'/>
-              <label className='ms-3' htmlFor="Literature">Mystery/Thriller</label>
-            </div>
-            <div>
-              <input type="radio" id='horror' name='filter'/>
-              <label className='ms-3' htmlFor="Literature">Horror</label>
-            </div>
-            <div>
-              <input type="radio" id='autobio' name='filter'/>
-              <label className='ms-3' htmlFor="Literature">Auto/Biography</label>
-            </div>
-            <div>
-              <input type="radio" id='self-help' name='filter'/>
-              <label className='ms-3' htmlFor="Literature">Self-Help</label>
-            </div>
-            <div>
-              <input type="radio" id='Politics' name='filter'/>
-              <label className='ms-3' htmlFor="Literature">Politics</label>
+              <input type="radio" id='No-Filter' name='filter' onClick={()=>filterBooks("No-Filter")}/>
+              <label className='ms-3' htmlFor="No-Filter">No-Filter</label>
             </div>
             
           </div>

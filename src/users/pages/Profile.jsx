@@ -23,6 +23,8 @@ function Profile() {
         setToken(sessionStorage.getItem('token'))
     }
   },[])
+  console.log(token);
+  
 
   const handleUploadBookImage = (e)=>{
     // console.log(e.target.files[0]);
