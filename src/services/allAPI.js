@@ -35,10 +35,23 @@ export const getSingleBookAPI = async (bookId,reqHeader)=>{
 export const addBookAPI = async (reqBody,reqHeader)=>{
   return await  commonAPI("POST",`${SEVERURL}/add-book`,reqBody,reqHeader)
 }
+//ALL USER UPLOAD BOOKS books
+export const getAllUserUploadBooksAPI = async (reqHeader)=>{
+  return await  commonAPI("GET",`${SEVERURL}/user-books`,{},reqHeader)
+}
+//all user purchased books
+export const getAllUserPurchasedBooksAPI = async (reqHeader)=>{
+  return await  commonAPI("GET",`${SEVERURL}/user-bought-books`,{},reqHeader)
+}
+
+//Remove User Upload Books
+export const removeUserUploadBooksAPI = async (bookId,reqHeader)=>{
+  return await  commonAPI("DELETE",`${SEVERURL}/user-books/${bookId}/remove`,{},reqHeader)
+}
 //profile update
 //view selled book
-//purchased books
-//approved books
+
+
 
 //authorised users api - admin
 //add carreer
