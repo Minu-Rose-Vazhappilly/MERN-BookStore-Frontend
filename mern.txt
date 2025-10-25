@@ -164,14 +164,15 @@ useParams():Used to get dynamic values in url,it is an always a object
                 
             Axios methods (GET,PUT,POST,DELETE)
         
- How data can be shared between components(through props)
-State Lifting 
+ How data can be shared between components
+-Using Props:State Lifting 
     To share data from one component to another by lifting the data to their common parent and parent can share the lifted state/data using props with its children
 Props Drilling 
 To avoid Props Drilling - Redux can be used
-Redux
+-Redux
 -------
 there will be common data store where all components can be accesssed.
+-context-
 
 Dynamic Routing:to set up path followed with column is used to store dynamic values in a url.
 

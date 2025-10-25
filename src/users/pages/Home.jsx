@@ -1,22 +1,40 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Header from '../components/Header'
 import Footer from '../../components/Footer'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { getHomeBooksAPI } from '../../services/allAPI'
-
+import { ToastContainer,toast } from 'react-toastify'
+import { searchBookContext } from '../../contextAPI/ContextShare'
 
 
 
 function Home() {
   const [homeBooks,setHomeBooks] = useState([])
+  const navigate = useNavigate()
+  const {searchKey,setSearchKey} = useContext(searchBookContext)
 
 useEffect(()=>{
+  setSearchKey("")
 getHomeBooks()
 },[])
 
 console.log(homeBooks);
+const searchBook = ()=>{
+  if(!searchKey){
+    toast.warning("Please provide a book title here!!!")
+  }else if(!sessionStorage.getItem("token")){
+    toast.warning("Please Login to search books")
+    setTimeout(()=>{
+      navigate('/login')
+    },2500);
+  }else if(sessionStorage.getItem('token') && searchKey){
+    navigate('/allbooks')
+  }else{
+    toast.error("Something went wrong")
+  }
+}
 
 
 const getHomeBooks = async ()=>{
@@ -40,12 +58,12 @@ const getHomeBooks = async ()=>{
             <h1 className='text-5xl font-bold'>Wonderful Gifts</h1>
             <p>Give your family and friends a book</p>
             <div className='mt-9 relative'>
-              <input type="text" className='bg-white text-gray-500 p-2 rounded-full w-100 focus:outline-0 ' placeholder='Search Books' />
+              <input type="text" onChange={e=>setSearchKey(e.target.value)} className='bg-white text-gray-500 p-2 rounded-full w-100 focus:outline-0 ' placeholder='Search Books' />
               <button
 
                 className="absolute right-3 top-1/2 -translate-y-1/2  text-blue-400"
               >
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
+                <FontAwesomeIcon onClick={searchBook} icon={faMagnifyingGlass} />
               </button>
             </div>
           </div>
@@ -118,6 +136,19 @@ const getHomeBooks = async ()=>{
       </section>
 
       <Footer />
+      <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick={false}
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+            
+            />
     </div>
   )
 }
