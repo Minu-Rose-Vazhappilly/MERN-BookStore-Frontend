@@ -6,6 +6,7 @@ import { faCircleCheck, faSquarePlus } from '@fortawesome/free-regular-svg-icons
 import { ToastContainer,toast } from 'react-toastify'
 import { addBookAPI, getAllUserPurchasedBooksAPI, getAllUserUploadBooksAPI, removeUserUploadBooksAPI } from '../../services/allAPI'
 import Edit from '../components/Edit'
+import SEVERURL from '../../services/serverURL'
 
 function Profile() {
   const [sellbookStatus,setSellBookStatus] = useState(true)
@@ -187,7 +188,7 @@ function Profile() {
       <Header/>
       <div className='bg-black' style={{height:'200px'}}></div>
             <div className="bg-white p-3 " style={{width:'230px',height:'230px',borderRadius:'50%',marginLeft:'70px',marginTop:'-130px'}}>
-              <img style={{width:'200px',height:'200px',borderRadius:'50%'}} src={userDP==""?"https://www.366icons.com/media/01/profile-avatar-account-icon-16699.png":userDP} alt="profile" />
+              <img style={{width:'200px',height:'200px',borderRadius:'50%'}} src={userDP==""?"https://www.366icons.com/media/01/profile-avatar-account-icon-16699.png":userDP.startsWith("https://lh3.googleusercontent.com/")?userDP:`${SEVERURL}/uploads/${userDP}`} alt="profile" />
             </div>
        <div className='md:flex justify-between px-30 mt-5'>
         <div className='flex justify-center items-center'>

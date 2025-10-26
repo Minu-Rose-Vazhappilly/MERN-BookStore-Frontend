@@ -49,6 +49,9 @@ export const removeUserUploadBooksAPI = async (bookId,reqHeader)=>{
   return await  commonAPI("DELETE",`${SEVERURL}/user-books/${bookId}/remove`,{},reqHeader)
 }
 //profile update
+export const updateUserProfileAPI = async (reqBody,reqHeader)=>{
+  return await  commonAPI("PUT",`${SEVERURL}/user-profile/edit`,reqBody,reqHeader)
+}
 //view selled book
 
 
