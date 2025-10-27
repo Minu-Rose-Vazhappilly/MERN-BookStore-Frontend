@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Header from '../components/Header'
 import Footer from '../../components/Footer'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -7,6 +7,7 @@ import { ToastContainer,toast } from 'react-toastify'
 import { addBookAPI, getAllUserPurchasedBooksAPI, getAllUserUploadBooksAPI, removeUserUploadBooksAPI } from '../../services/allAPI'
 import Edit from '../components/Edit'
 import SEVERURL from '../../services/serverURL'
+import { userUpdateContext } from '../../contextAPI/ContextShare'
 
 function Profile() {
   const [sellbookStatus,setSellBookStatus] = useState(true)
@@ -24,6 +25,7 @@ function Profile() {
   const [purchaseBook,setPurchaseBooks] = useState([])
   const [username,setUsername] = useState("")
   const [userDP,setUserDP] = useState("")
+  const {userEditResponse} = useContext(userUpdateContext)
 
 
   console.log(userBooks);
@@ -38,7 +40,7 @@ function Profile() {
         setUserDP(user.profile)
 
     }
-  },[])
+  },[userEditResponse])
 
   useEffect(()=>{
     if(bookStatus == true){

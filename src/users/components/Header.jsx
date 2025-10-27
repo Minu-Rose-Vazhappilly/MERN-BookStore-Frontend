@@ -3,10 +3,11 @@ import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg
 import { faAddressCard, faCircleUser } from '@fortawesome/free-regular-svg-icons'
 import { faBars, faPowerOff } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import { Link, useNavigate } from 'react-router-dom'
 import SEVERURL from '../../services/serverURL'
+import { userUpdateContext } from '../../contextAPI/ContextShare'
 
 
 
@@ -17,6 +18,7 @@ function Header() {
   const [userDp,setUserDp] = useState("")
   const [dropDownStatus,setDropDownStatus] = useState(false)
   const navigate = useNavigate()
+  const {userEditResponse} = useContext(userUpdateContext)
 
   useEffect(()=>{
     if(sessionStorage.getItem("token")){
@@ -25,7 +27,7 @@ function Header() {
       const user = JSON.parse(sessionStorage.getItem("user"))
       setUserDp(user.profile)
     }
-  },[token])
+  },[token,userEditResponse])
 
   const logout = ()=>{
     sessionStorage.clear()

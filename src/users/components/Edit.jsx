@@ -1,9 +1,10 @@
 import { faPen, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import SEVERURL from '../../services/serverURL'
 import { ToastContainer,toast } from 'react-toastify'
 import { updateUserProfileAPI } from '../../services/allAPI'
+import { userUpdateContext } from '../../contextAPI/ContextShare'
 
 function Edit() {
     const [offCanvasStatus,setOffCanvasStatus] = useState(false)
@@ -11,6 +12,7 @@ function Edit() {
     const [token,setToken] = useState("")
     const [existingProfile,setExistingProfile] = useState("")
     const [preview,setPreview] = useState("")
+    const {setUserEditResponse} = useContext(userUpdateContext)
 
     console.log(userDetails);
     
@@ -56,10 +58,11 @@ function Edit() {
             }
             const result = await updateUserProfileAPI(reqBody,reqHeader)
             if(result.status == 200){
-                toast.success("Profile updated successfully")
+                //toast.success("Profile updated successfully")
                 sessionStorage.setItem("user",JSON.stringify(result.data))
                 handleReset()
                 setOffCanvasStatus(false)
+                setUserEditResponse(result.data)
             }else{
                 toast.error("Something went wrong")
                 console.log(result);
@@ -73,6 +76,7 @@ function Edit() {
                 sessionStorage.setItem("user",JSON.stringify(result.data))
                 handleReset()
                 setOffCanvasStatus(false)
+                setUserEditResponse(result.data)
             }else{
                 toast.error("Something went wrong")
                 console.log(result);
