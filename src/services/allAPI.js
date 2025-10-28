@@ -64,6 +64,10 @@ export const getAllUsersAPI = async (reqHeader)=>{
   return await  commonAPI("GET",`${SEVERURL}/all-user`,{},reqHeader)
 }
 //approve books
+export const updateBookStatusAPI = async (reqBody,reqHeader)=>{
+  return await  commonAPI("PUT",`${SEVERURL}/admin/book/approve`,reqBody,reqHeader)
+}
+
 //list all books
 export const listAllBooksAPI = async (reqHeader)=>{
   return await  commonAPI("GET",`${SEVERURL}/admin-all-books`,{},reqHeader)

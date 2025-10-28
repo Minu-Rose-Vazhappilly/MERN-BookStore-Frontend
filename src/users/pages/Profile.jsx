@@ -374,13 +374,13 @@ function Profile() {
                       
                       {
                         item.status == "pending" ?
-                        <img src="https://psdstamps.com/wp-content/uploads/2022/04/round-pending-stamp-png.png" width={"150px"} height={'150px'} alt="" />
+                        <img src="https://psdstamps.com/wp-content/uploads/2022/04/round-pending-stamp-png.png" width={"150px"} height={'150px'} alt="pending-icon" />
                         :
                         item.status == "approved" ?
                       
-                        <img src="https://pngimg.com/uploads/approved/approved_PNG13.png" width={"100px"} height={'100px'} alt="" />
+                        <img src="https://pngimg.com/uploads/approved/approved_PNG13.png" width={"100px"} height={'100px'} alt="approved-icon" />
                         :
-                        <img src="https://static.vecteezy.com/system/resources/previews/008/490/263/original/rejected-stamp-mark-clipart-free-png.png" alt="" width={"100px"} height={'100px'} />
+                        <img src="https://www.onlygfx.com/wp-content/uploads/2017/12/sold-stamp-1.png" alt="sold-icon" width={"100px"} height={'100px'} />
                       
                       }
                     </div>

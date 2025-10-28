@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import AdminHeader from '../components/AdminHeader'
 import Footer from '../../components/Footer'
 import AdminSideBar from '../components/AdminSideBar'
-import { getAllUsersAPI, listAllBooksAPI } from '../../services/allAPI';
+import { getAllUsersAPI, listAllBooksAPI, updateBookStatusAPI } from '../../services/allAPI';
 import SEVERURL from '../../services/serverURL';
 
 function ResourceAdmin() {
@@ -12,6 +12,7 @@ function ResourceAdmin() {
   const [allUsers,setAllUsers] = useState([])
   const [token,setToken] = useState("")
   const [userBooks,setUserBooks] = useState([])
+  const [updateBookStatus,setUpdateBookStatus] = useState({})
 
   //console.log(allUsers);
 
@@ -32,7 +33,7 @@ function ResourceAdmin() {
         
       }
     }
-  },[userListStatus])
+  },[userListStatus,updateBookStatus])
   const getAllBooks = async (userToken)=>{
     const reqHeader = {
       "Authorization": `Bearer ${userToken}`
@@ -63,6 +64,25 @@ function ResourceAdmin() {
         console.log(result);
         
       }
+    }catch(err){
+      console.log(err);
+      
+    }
+  }
+
+  const approveBook = async (book)=>{
+    const userToken = sessionStorage.getItem("token")
+    const reqHeader = {
+      "Authorization": `Bearer ${userToken}`
+    }
+    try{
+
+      const result = await updateBookStatusAPI(book,reqHeader)
+      if(result.status == 200){
+        setUpdateBookStatus(result.data)
+      }
+      
+
     }catch(err){
       console.log(err);
       
@@ -119,20 +139,30 @@ function ResourceAdmin() {
                 <div className="md:grid grid-cols-4 w-full mt-5">
                   { userBooks?.length>0 ?
                     userBooks.map((items,index)=>(
-                      <div key={index} className="p-3">
+                      <div key={items?._id} className="p-3">
                     <div className="shadow">
-                      <img width={"!00%"} height={"300px"} src={items?.imageUrl} alt="book" />
+                      <img width={"100%"} height={"300px"} src={items?.imageUrl} alt="book" />
                       <div className="flex flex-col justify-center items-center">
                         <p className="text-blue-700 font-bold">{items?.author}</p>
                         <p >{items?.title}</p>
                         <p>$ {items?.discountPrice}</p>
+                        {   items?.status == "pending" &&
+                          <div className='w-full p-2 text-center mt-2'>
+                          <button onClick={()=>approveBook(items)} className="p-3 rounded bg-green-700 w-full text-white">Approve</button>
+                        </div>}
+                        {
+                          items?.status == "approved" &&
+                          <div className="flex justify-end w-full">
+                            <img width={"100px"} height={"100px"} src="https://static.vecteezy.com/system/resources/previews/010/451/469/original/green-check-mark-icon-tick-symbol-in-green-color-illustration-free-vector.jpg" alt="" />
+                          </div>
+                        }
                       </div>
                     </div>
                   </div>
                     ))
                     
                   :
-                  <p>No Books</p>}
+                  <p>No Books Added yet...</p>}
                   
                 </div>
               </div>
