@@ -59,6 +59,10 @@ export const updateUserProfileAPI = async (reqBody,reqHeader)=>{
 //authorised users api - admin
 //add carreer
 //update admin
+export const updateAdminProfileAPI = async (reqBody,reqHeader)=>{
+  return await  commonAPI("PUT",`${SEVERURL}/admin-profile/edit`,reqBody,reqHeader)
+}
+
 //list users called by admin collection component
 export const getAllUsersAPI = async (reqHeader)=>{
   return await  commonAPI("GET",`${SEVERURL}/all-user`,{},reqHeader)
@@ -72,3 +76,5 @@ export const updateBookStatusAPI = async (reqBody,reqHeader)=>{
 export const listAllBooksAPI = async (reqHeader)=>{
   return await  commonAPI("GET",`${SEVERURL}/admin-all-books`,{},reqHeader)
 }
+
+
