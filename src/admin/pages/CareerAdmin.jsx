@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faLocationDot, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
+import JobAdd from '../components/JobAdd'
 
 
 function CareerAdmin() {
@@ -69,7 +70,7 @@ function CareerAdmin() {
             <button className='bg-green-500 p-2 round-r'>Search</button>
             </div>
             <div>
-              Add
+              <JobAdd/>
             </div>
             </div>
             <div>

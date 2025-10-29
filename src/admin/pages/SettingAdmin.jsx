@@ -9,9 +9,12 @@ import { faPen } from '@fortawesome/free-solid-svg-icons'
 import { updateAdminProfileAPI } from '../../services/allAPI'
 import { ToastContainer,toast } from 'react-toastify'
 import SEVERURL from '../../services/serverURL'
+import { useContext } from 'react'
+import { adminUpdateContext } from '../../contextAPI/ContextShare'
 
 
 function SettingAdmin() {
+  const {adminEditResponse,setAdminEditResponse} = useContext(adminUpdateContext)
   const [userDetails,setUserDetails] = useState({username:"",password:"",cpassword:"",profile:"",role:""})
   const [token,setToken] = useState("")
   const [existingProfile,setExistingProfile] = useState("")
@@ -66,7 +69,7 @@ function SettingAdmin() {
                     toast.success("Profile updated successfully")
                     sessionStorage.setItem("user",JSON.stringify(result.data))
                     handleReset()
-                    //setUserEditResponse(result.data)
+                    setAdminEditResponse(result.data)
                 }else{
                     toast.error("Something went wrong")
                     console.log(result);
@@ -80,7 +83,7 @@ function SettingAdmin() {
                     sessionStorage.setItem("user",JSON.stringify(result.data))
                     handleReset()
                     
-                    //setUserEditResponse(result.data)
+                    setAdminEditResponse(result.data)
                 }else{
                     toast.error("Something went wrong")
                     console.log(result);
