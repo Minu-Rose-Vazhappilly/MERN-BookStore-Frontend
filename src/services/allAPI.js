@@ -19,6 +19,10 @@ export const googleloginAPI = async (reqBody)=>{
 export const getHomeBooksAPI = async ()=>{
   return await  commonAPI("GET",`${SEVERURL}/home-books`)
 }
+//all job api
+export const getAllJobAPI = async (searchKey)=>{
+  return await  commonAPI("GET",`${SEVERURL}/get-allJobs?search=${searchKey}`)
+}
 // all career api
 
 //authorised users api - user
@@ -75,6 +79,15 @@ export const updateBookStatusAPI = async (reqBody,reqHeader)=>{
 //list all books
 export const listAllBooksAPI = async (reqHeader)=>{
   return await  commonAPI("GET",`${SEVERURL}/admin-all-books`,{},reqHeader)
+}
+
+//add-Job
+export const addJobAPI = async (reqBody,reqHeader)=>{
+  return await commonAPI("POST",`${SEVERURL}/admin/addJob`,reqBody,reqHeader)
+}
+
+export const removeJobAPI = async (jobId,reqHeader)=>{
+  return await commonAPI("DELETE",`${SEVERURL}/job/${jobId}/remove`,{},reqHeader)
 }
 
 

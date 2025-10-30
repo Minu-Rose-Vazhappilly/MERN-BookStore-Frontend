@@ -7,12 +7,62 @@ import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faLocationDot, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import JobAdd from '../components/JobAdd'
+import { getAllJobAPI, removeJobAPI } from '../../services/allAPI'
+import { useEffect } from 'react'
 
 
 function CareerAdmin() {
   const [canvas,setCanvas] =  useState(false)
   const [jobListStatus,setJobListStatus] = useState(true)
   const [listApplicationStatus,setApplicationStatus] = useState(false)
+  const [allJobs,setAllJobs] = useState([])
+  const [searchKey,setSearchKey] = useState("")
+  const [deleteJobResponse,setDeleteJobResponse] = useState({})
+
+  console.log(allJobs);
+  
+
+  useEffect(()=>{
+    if(jobListStatus == true){
+      getAllJobs()
+    }
+  },[searchKey,deleteJobResponse])
+
+  const getAllJobs  = async ()=>{
+    try{
+      const result = await getAllJobAPI(searchKey)
+      if(result.status == 200){
+        setAllJobs(result.data)
+      }
+
+    }catch(err){
+
+    }
+  }
+
+  const removeJob = async (id)=>{
+    const token = sessionStorage.getItem("token")
+    if(token){
+      const reqHeader = {
+                "Authorization":`Bearer ${token}`
+              }
+
+          try{
+              const result = await removeJobAPI(id,reqHeader)
+              if(result.status == 200){
+                setDeleteJobResponse(result.data)
+              }else{
+                console.log(result);
+                
+              }
+          }
+          catch(err){
+            console.log(err);
+            
+
+          }
+    }
+  }
   return (
 
      <div>
@@ -68,7 +118,7 @@ function CareerAdmin() {
             <div className='md:flex justify-between items-center my-5'>
             
               <div className='flex'>
-                <input type="text" className='round-l border border-gray-300 p-2 focus-outline:none' placeholder='Job title' />
+                <input onChange={e=>setSearchKey(e.target.value)} type="text" className='round-l border border-gray-300 p-2 focus-outline:none' placeholder='Job title' />
               <button className='bg-green-500 p-2 round-r'>Search</button>
               </div>
            
@@ -78,17 +128,25 @@ function CareerAdmin() {
             </div>
             </div>
             <div>
-               <div className="w-full md:max-w-[800px]  shadow p-4 mt-4">
-                          <div className='flex justify-between'><h1>  Hr Assistant</h1>
-                            <button onClick={() => setModalStatus(true)} className='bg-red-500 rounded px-3 py-2 text-white'>Delete <FontAwesomeIcon icon={faTrash} /></button>
+               {
+                allJobs?.length>0?
+                allJobs.map(job=>(
+                <div key={job?._id} className="w-full md:max-w-[800px]  shadow p-4 mt-4">
+                          <div className='flex justify-between'><h1>  {job?.title}</h1>
+                            <button onClick={() => removeJob(job?._id)} className='bg-red-500 rounded px-3 py-2 text-white'>Delete <FontAwesomeIcon icon={faTrash} /></button>
                           </div>
                           <div><hr className='border border-gray-300' /></div>
-                          <h1><FontAwesomeIcon icon={faLocationDot} style={{ color: "#74C0FC", }} /> Location</h1>
-                          <h1>Job Type:Senior Level</h1>
-                          <h1>Qualification:Mtech/Btech/BCA/MCA</h1>
-                          <h1>Experience:5-7</h1>
-                          <h1>Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam temporibus reprehenderit ipsam corrupti iure, fugiat molestias doloremque magnam architecto placeat atque vero asperiores sapiente perspiciatis incidunt, nemo pariatur nam fugit?</h1>
-                        </div>
+                          <h1><FontAwesomeIcon icon={faLocationDot} style={{ color: "#74C0FC", }} /> {job?.location}</h1>
+                          <h1>Job Type:{job?.jobType}</h1>
+                          <h1>Qualification:{job?.qualification}</h1>
+                          <h1>Salary:{job?.salary}</h1>
+                          <h1>Experience:{job?.experience}</h1>
+                          <h1>Description: {job?.description}</h1>
+                        </div>))
+                        :
+                        <p>No Job Openings...</p>
+                
+                }
             </div>
           </div>
             }
