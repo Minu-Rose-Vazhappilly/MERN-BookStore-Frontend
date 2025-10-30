@@ -19,6 +19,8 @@ useEffect(()=>{
   setSearchKey("")
 getHomeBooks()
 },[])
+console.log(homeBooks);
+
 
 console.log(homeBooks);
 const searchBook = ()=>{
@@ -79,7 +81,7 @@ const getHomeBooks = async ()=>{
               homeBooks.length>0?
               homeBooks?.map((books,index)=>(
                 <div className="shadow p-3 ms-3">
-              <img width={"!00%"} height={"300px"} src={books.imageUrl
+              <img width={"100%"} height={"300px"} src={books.imageUrl
 } alt="book" />
               <div className="flex flex-col justify-center items-center">
                 <p className="text-blue-700 font-bold">{books.author}</p>

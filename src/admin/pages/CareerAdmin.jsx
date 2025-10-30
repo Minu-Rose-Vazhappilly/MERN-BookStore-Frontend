@@ -10,6 +10,7 @@ import JobAdd from '../components/JobAdd'
 
 
 function CareerAdmin() {
+  const [canvas,setCanvas] =  useState(false)
   const [jobListStatus,setJobListStatus] = useState(true)
   const [listApplicationStatus,setApplicationStatus] = useState(false)
   return (
@@ -41,7 +42,7 @@ function CareerAdmin() {
                 : "text-gray-600"
             }`}
           >
-            Job Status
+            Job Post
           </p>
 
           <p
@@ -55,7 +56,7 @@ function CareerAdmin() {
                 : "text-gray-600"
             }`}
           >
-            Application Status
+            View Applicant
           </p>
         </div>
 
@@ -65,12 +66,15 @@ function CareerAdmin() {
           jobListStatus && 
           <div>
             <div className='md:flex justify-between items-center my-5'>
-            <div className='flex'>
-              <input type="text" className='round-l border border-gray-300 p-2 focus-outline:none' placeholder='Job title' />
-            <button className='bg-green-500 p-2 round-r'>Search</button>
-            </div>
-            <div>
-              <JobAdd/>
+            
+              <div className='flex'>
+                <input type="text" className='round-l border border-gray-300 p-2 focus-outline:none' placeholder='Job title' />
+              <button className='bg-green-500 p-2 round-r'>Search</button>
+              </div>
+           
+            
+              <div>
+              <JobAdd />
             </div>
             </div>
             <div>
