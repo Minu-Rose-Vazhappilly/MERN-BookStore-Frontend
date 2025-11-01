@@ -57,7 +57,10 @@ export const updateUserProfileAPI = async (reqBody,reqHeader)=>{
   return await  commonAPI("PUT",`${SEVERURL}/user-profile/edit`,reqBody,reqHeader)
 }
 //view selled book
-
+ //add application api
+ export const addApplicationAPI = async (reqBody,reqHeader)=>{
+  return await  commonAPI("POST",`${SEVERURL}/application/add`,reqBody,reqHeader)
+}
 
 
 //authorised users api - admin
@@ -88,6 +91,11 @@ export const addJobAPI = async (reqBody,reqHeader)=>{
 
 export const removeJobAPI = async (jobId,reqHeader)=>{
   return await commonAPI("DELETE",`${SEVERURL}/job/${jobId}/remove`,{},reqHeader)
+}
+
+//list applications - called by admin career component
+export const getAllApplicationAPI = async (reqHeader)=>{
+  return await commonAPI("GET",`${SEVERURL}/all-application`,{},reqHeader)
 }
 
 

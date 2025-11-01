@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import AdminSideBar from '../components/AdminSideBar'
 import Footer from '../../components/Footer'
 import AdminHeader from '../components/AdminHeader'
@@ -7,17 +7,23 @@ import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faLocationDot, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import JobAdd from '../components/JobAdd'
-import { getAllJobAPI, removeJobAPI } from '../../services/allAPI'
+import { getAllApplicationAPI, getAllJobAPI, removeJobAPI } from '../../services/allAPI'
 import { useEffect } from 'react'
+import { jobContext } from '../../contextAPI/ContextShare'
+import SEVERURL from '../../services/serverURL'
 
 
 function CareerAdmin() {
+  const {addJobResponse,setAddJobResponse} = useContext(jobContext)
   const [canvas,setCanvas] =  useState(false)
   const [jobListStatus,setJobListStatus] = useState(true)
   const [listApplicationStatus,setApplicationStatus] = useState(false)
   const [allJobs,setAllJobs] = useState([])
   const [searchKey,setSearchKey] = useState("")
   const [deleteJobResponse,setDeleteJobResponse] = useState({})
+  const [application,setApplication] = useState([])
+   console.log(application);
+   
 
   console.log(allJobs);
   
@@ -25,8 +31,27 @@ function CareerAdmin() {
   useEffect(()=>{
     if(jobListStatus == true){
       getAllJobs()
+    }else if(listApplicationStatus == true){
+      getApplication()
     }
-  },[searchKey,deleteJobResponse])
+  },[searchKey,deleteJobResponse,addJobResponse,listApplicationStatus])
+
+  const getApplication = async ()=>{
+    const token = sessionStorage.getItem("token")
+    if(token){
+      const reqHeader = {
+                "Authorization":`Bearer ${token}`
+              }
+              const result = await getAllApplicationAPI(reqHeader)
+              if(result.status == 200){
+                setApplication(result.data)
+              }else{
+                console.log(result);
+                
+              }
+            }
+
+  }
 
   const getAllJobs  = async ()=>{
     try{
@@ -150,7 +175,7 @@ function CareerAdmin() {
             </div>
           </div>
             }
-          {listApplicationStatus && <div className='p-10 overflow-x-hidden'>
+          {listApplicationStatus && <div className='p-10 overflow-x-auto'>
             <table className='w-full my-3 shadow'>
                 <thead>
                   <tr>
@@ -165,16 +190,22 @@ function CareerAdmin() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td className='border border-gray-500 p-3 text-center'>1</td>
-                    <td className='border border-gray-500 p-3 text-center'>Front end DEveleper</td>
-                    <td className='border border-gray-500 p-3 text-center'>Max Miller</td>
-                    <td className='border border-gray-500 p-3 text-center'>BCA</td>
-                    <td className='border border-gray-500 p-3 text-center'>max@gmail.com</td>
-                    <td className='border border-gray-500 p-3 text-center'>6282693587</td>
-                    <td className='border border-gray-500 p-3 text-center'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur, asperiores culpa amet laudantium sint nulla aut suscipit voluptatem, ipsa itaque vitae enim officiis maxime minima repellat, aliquam nobis consequuntur ullam?</td>
-                    <td className='border border-gray-500 p-3 text-center'><Link className='text-blue-600 underline'>Resume</Link></td>
+                  { application?.length>0?
+                  application?.map((item,index)=>(
+                     <tr key={item?._id}>
+                    <td className='border border-gray-500 p-3 text-center'>{index+1}</td>
+                    <td className='border border-gray-500 p-3 text-center'>{item?.jobTitle}</td>
+                    <td className='border border-gray-500 p-3 text-center'>{item?.fullname}</td>
+                    <td className='border border-gray-500 p-3 text-center'>{item?.qualification}</td>
+                    <td className='border border-gray-500 p-3 text-center'>{item?.email}</td>
+                    <td className='border border-gray-500 p-3 text-center'>{item?.phone}</td>
+                    <td className='border border-gray-500 p-3 text-center'>{item?.coverLetter}</td>
+                    <td className='border border-gray-500 p-3 text-center'><Link to={`${SEVERURL}/pdf/${item?.resume}`} className='text-blue-600 underline'>Resume</Link></td>
                   </tr>
+                  ))
+                  :
+                  <p>No Applications available</p> 
+                   }
                 </tbody>
             </table>
             </div>}
